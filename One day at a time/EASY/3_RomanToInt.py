@@ -44,3 +44,47 @@ s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 
 '''
+
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        num = 0
+        rPair = {
+            'I'      :       1,
+            'V'      :       5,
+            'X'      :       10,
+            'L'      :       50,
+            'C'      :       100,
+            'D'      :       500,
+            'M'      :       1000
+        }
+        
+        stackL = [str(x) for x in s] # put the string in a list (for stack operation)
+        prev = stackL[-1]            # get a reference to the last value of the list
+        
+        # iterate through the list
+        for _ in range(len(stackL)):
+            val = stackL.pop() # get value 
+ 
+            # compare if value if less than the last value
+            # we can do this because roman numerals go from highest to lowest
+            # so if the next value is lower than the previous, it means that we need to subtract
+            if rPair[val] < rPair[prev]:
+                num -= rPair[val]
+            else:
+                num += rPair[val]
+
+            # set previous to the current value, for the next iteration
+            prev = val
+
+
+        return num
+
+
+        
+
+        
+        
