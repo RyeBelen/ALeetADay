@@ -78,8 +78,3 @@ class Solution(object):
             current_node.next = temp
         
         return list3.next
-
-        
-
-   
-        
